@@ -7,7 +7,7 @@ browser. Published at `coolcode.ca/edge-map/`.
 ## Using the tool
 
 <!-- coolcode:guide -->
-The page asks several Cloudflare endpoints for their /cdn-cgi/trace and shows which data centre (an airport code such as YVR or SEA) answered each one, over IPv4 and IPv6. If you are in Canada but an edge outside Canada answered, it is flagged. Turn on "Remember my results in this browser" and come back over days to see whether your ISP's route to Cloudflare moves; the history stores data centre codes only, never your IP, and can be downloaded as CSV.
+The page asks several Cloudflare endpoints for their /cdn-cgi/trace and shows which data centre (an airport code such as YVR or SEA) answered each one, over IPv4 and IPv6. If Cloudflare locates your IP in Canada but an edge outside Canada answered, it is flagged. Turn on "Remember my results in this browser" and come back over days to see whether your ISP's route to Cloudflare moves; the history stores data centre codes only, never your IP, and can be downloaded as CSV.
 <!-- /coolcode:guide -->
 
 Each endpoint can fail on its own: the IPv6 one fails on networks without IPv6,
@@ -71,3 +71,20 @@ python3 -m http.server 8000 --directory dist
 | `web/model.mjs` | Trace parsing, detour logic, projection, history |
 | `web/app.mjs` | Requests, table, map and history DOM |
 | `tool.json` | Catalogue record for coolcode.ca |
+
+## Collection maintenance
+
+The catalogue, imported README guide, repository audit, sitemap, Cloudflare
+visitor registry and Linux refresh watchdog are managed in
+[jsdyer/jsdyer.github.io](https://github.com/jsdyer/jsdyer.github.io).
+Follow its [tool lifecycle checklist](https://github.com/jsdyer/jsdyer.github.io/blob/main/docs/tool-lifecycle.md)
+when changing this tool's identity, source, deployment, inputs or refresh schedule.
+The independent scheduler must actually be installed on the Linux server; a
+GitHub schedule guard alone cannot guarantee refreshes continue.
+
+The `loc` value is Cloudflare's geolocation of your IP, not proof of your
+physical location. Airport-code coordinates are approximate serving locations;
+a missing trace response does not prove a site is outside Cloudflare. Stored
+history is opt-in, contains no IP addresses, and is validated when restored.
+If browser storage fails, the page says the check was not saved. No scheduled
+collector or watchdog dispatch is needed for these browser-only checks.

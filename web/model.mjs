@@ -21,9 +21,7 @@ export function ipVersion(ip) {
 
 export function maskIp(ip) {
   if (!ip) return '';
-  if (ip.includes(':')) return ip.split(':').slice(0, 3).join(':') + ':…';
-  const parts = ip.split('.');
-  return parts.length === 4 ? `${parts[0]}.${parts[1]}.x.x` : '…';
+  return 'Hidden';
 }
 
 export function describe(trace, colos, home) {
@@ -37,8 +35,8 @@ export function describe(trace, colos, home) {
     lon: colo?.lon ?? null,
     known: Boolean(colo),
     visitorCountry: trace.loc ?? null,
-    inHome: country === home,
-    // You are in the home country, but Cloudflare answered from somewhere else.
+    inHome: country == null ? null : country === home,
+    // Cloudflare geolocates the visitor IP to home; this does not locate the person.
     detour: trace.loc === home && country != null && country !== home,
     version: ipVersion(trace.ip),
     http: trace.http ?? null,
@@ -122,16 +120,32 @@ export function historyCsv(history, endpoints) {
 export function validateConfig(config) {
   if (!config || !/^[A-Z]{2}$/.test(config.home_country ?? '')) throw new Error('home_country must be a two-letter code');
   if (!Array.isArray(config.endpoints) || !config.endpoints.length) throw new Error('List at least one endpoint');
+  if (!Number.isFinite(config.timeout_seconds) || config.timeout_seconds < 1 || config.timeout_seconds > 60) throw new Error('timeout_seconds must be 1–60');
+  if (!Number.isInteger(config.history_limit) || config.history_limit < 1 || config.history_limit > 10000) throw new Error('history_limit must be 1–10000');
   const ids = new Set();
   for (const endpoint of config.endpoints) {
     if (!/^[a-z0-9-]+$/.test(endpoint.id ?? '') || ids.has(endpoint.id)) throw new Error(`Bad or duplicate endpoint id: ${endpoint.id}`);
     ids.add(endpoint.id);
-    if (!/^(\/|https:\/\/)/.test(endpoint.url ?? '') || !endpoint.url.endsWith('/cdn-cgi/trace')) throw new Error(`Endpoint ${endpoint.id} must be an https or root-relative /cdn-cgi/trace URL`);
+    if (typeof endpoint.url !== 'string' || !validEndpoint(endpoint.url)) throw new Error(`Endpoint ${endpoint.id} must be an https or root-relative /cdn-cgi/trace URL`);
   }
   for (const [code, colo] of Object.entries(config.colos ?? {})) {
-    if (!/^[A-Z]{3}$/.test(code) || !/^[A-Z]{2}$/.test(colo.country) || Math.abs(colo.lat) > 90 || Math.abs(colo.lon) > 180) {
+    if (!/^[A-Z]{3}$/.test(code) || !/^[A-Z]{2}$/.test(colo.country) || !Number.isFinite(colo.lat) || !Number.isFinite(colo.lon) || Math.abs(colo.lat) > 90 || Math.abs(colo.lon) > 180) {
       throw new Error(`Bad colo entry: ${code}`);
     }
   }
   return config;
+}
+
+function validEndpoint(value) {
+  if (value === '/cdn-cgi/trace') return true;
+  try { const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password && !url.search && !url.hash && url.pathname === '/cdn-cgi/trace'; } catch { return false; }
+}
+
+export function cleanHistory(value, limit = 365) {
+  if (!Array.isArray(value)) return [];
+  return value.filter(e => e && typeof e.at === 'string' && Number.isFinite(Date.parse(e.at)) && e.results && typeof e.results === 'object')
+    .map(e => ({at: e.at, results: Object.fromEntries(Object.entries(e.results)
+      .filter(([id,r]) => /^[a-z0-9-]+$/.test(id) && /^[A-Z]{3}$/.test(r?.colo ?? ''))
+      .map(([id,r]) => [id, {colo:r.colo, version:[4,6].includes(r.version)?r.version:null,
+        loc:/^[A-Z]{2}$/.test(r.loc ?? '')?r.loc:null, http:typeof r.http==='string'?r.http.slice(0,20):null}]))})).slice(-limit);
 }

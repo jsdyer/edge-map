@@ -56,8 +56,8 @@ def main():
                 assert "Not in Canada" in headline and "SEA" in headline, headline
                 table = page.locator("#results").inner_text()
                 assert "Vancouver" in table and "Seattle" in table, table
-                assert "not served through Cloudflare" in table  # the local test server has no trace
-                assert "24.84.x.x" in table and "24.84.10.20" not in table
+                assert "trace unavailable at this URL" in table  # the local test server has no trace
+                assert "Hidden" in table and "24.84.10.20" not in table
                 page.locator("#show-ip").check()
                 assert "24.84.10.20" in page.locator("#results").inner_text()
                 assert page.locator("#map circle.active").count() == 2

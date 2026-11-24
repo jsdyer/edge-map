@@ -21,7 +21,7 @@
       <h2 id="edge-title">Your edge right now</h2>
       <p id="headline" class="headline-text" role="status" aria-live="polite">Asking Cloudflare…</p>
       <div class="actions">
-        <button id="rerun" type="button">Check again</button>
+        <button id="rerun" disabled type="button">Check again</button>
         <label class="inline"><input type="checkbox" id="show-ip"> Show my IP address</label>
       </div>
       <div class="table-wrap">
@@ -50,7 +50,7 @@
       <div class="actions"><a id="history-csv" class="button" hidden download="edge-map-history.csv">Download CSV</a><button id="history-clear" type="button" hidden>Clear history</button></div>
     </section>
 
-    <aside aria-label="Privacy"><strong>What leaves your browser.</strong> Your browser asks each Cloudflare endpoint for its trace, the same small request any Cloudflare site sees. Nothing is sent to CoolCode. Your IP address is hidden unless you choose to show it. History is off by default; when on, it is stored only in this browser (<code>coolcode:edge-map:history</code>) and records data centre codes, not your IP.</aside>
+    <aside aria-label="Privacy"><strong>What leaves your browser.</strong> Your browser asks each Cloudflare endpoint for its trace, the same small request any Cloudflare site sees. The shared CoolCode counter records aggregate tool visits; your trace and history are not uploaded to it. Your IP address is hidden unless you choose to show it. History is off by default; when on, it is stored only in this browser (<code>coolcode:edge-map:history</code>) and records data centre codes, not your IP.</aside>
     <noscript><p>This tool needs JavaScript to ask Cloudflare.</p></noscript>
   </main>
   <footer>Part of <a href="https://coolcode.ca/">the CoolCode collection</a>. Data from Cloudflare's <code>/cdn-cgi/trace</code>. {{ISSUE_LINK}}</footer>

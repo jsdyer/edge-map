@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { parseTrace, describe, headline, maskIp, project, VIEWS, addEntry, historyEntry, drift, historyCsv, validateConfig, ipVersion } from '../web/model.mjs';
+import { parseTrace, describe, headline, maskIp, project, VIEWS, addEntry, historyEntry, drift, historyCsv, validateConfig, ipVersion, cleanHistory } from '../web/model.mjs';
 
 const config = JSON.parse(readFileSync(new URL('../web/config.json', import.meta.url)));
 const TRACE = 'fl=123f45\nh=1.1.1.1\nip=24.84.10.20\nts=1764000000.123\nvisit_scheme=https\nuag=Mozilla/5.0\ncolo=SEA\nsliver=none\nhttp=http/3\nloc=CA\ntls=TLSv1.3\nsni=off\nwarp=off\ngateway=off\nrbi=off\nkex=X25519MLKEM768\n';
@@ -53,8 +53,8 @@ test('headline summarises endpoints', () => {
 });
 
 test('masks IP addresses', () => {
-  assert.equal(maskIp('24.84.10.20'), '24.84.x.x');
-  assert.equal(maskIp('2001:569:7a2b:1::5'), '2001:569:7a2b:…');
+  assert.equal(maskIp('24.84.10.20'), 'Hidden');
+  assert.equal(maskIp('2001:569:7a2b:1::5'), 'Hidden');
   assert.equal(ipVersion('2001:569::1'), 6);
 });
 
@@ -79,4 +79,16 @@ test('history keeps the newest entries and counts changes', () => {
   assert.equal(csv.split('\n')[0], 'time_utc,ipv4_colo,ipv6_colo');
   assert.equal(csv.trim().split('\n').length, 5);
   assert.deepEqual(addEntry('garbage', { at: 'x' }, 10), [{ at: 'x' }]);
+});
+
+test('rejects protocol-relative endpoints and invalid numerical settings', () => {
+  for (const url of ['//evil.example/cdn-cgi/trace','https://u:p@example.com/cdn-cgi/trace'])
+    assert.throws(() => validateConfig({...config,endpoints:[{id:'bad',url}]}));
+  assert.throws(() => validateConfig({...config,timeout_seconds:NaN}));
+  assert.throws(() => validateConfig({...config,colos:{YVR:{country:'CA',lat:NaN,lon:1}}}));
+});
+test('restored history validates structure and strips IP addresses', () => {
+  assert.deepEqual(cleanHistory({bad:true}), []);
+  const list=cleanHistory([{at:'2026-11-23T00:00:00Z',ip:'1.2.3.4',results:{ipv4:{colo:'YVR',ip:'1.2.3.4'}}}]);
+  assert.equal(list.length,1);assert.ok(!JSON.stringify(list).includes('1.2.3.4'));
 });
