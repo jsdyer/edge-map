@@ -1,16 +1,23 @@
 {
-  "id": "coolcode-tool-template",
-  "title": "CoolCode Tool Starter",
-  "description": "A browser-only example that trims lines and removes exact duplicates.",
-  "category": "security",
-  "tags": ["text", "lines", "duplicates"],
-  "icon": "scan-search",
-  "url": "/coolcode-tool-template/",
-  "source": "https://github.com/jsdyer/coolcode-tool-template",
+  "id": "edge-map",
+  "title": "Edge Map",
+  "description": "See which Cloudflare data centre serves your connection over IPv4 and IPv6, whether it is in Canada, and how it changes over time.",
+  "category": "liminal-tools",
+  "tags": [
+    "cloudflare",
+    "cdn",
+    "ipv6",
+    "routing",
+    "edge",
+    "canada"
+  ],
+  "icon": "radar",
+  "url": "/edge-map/",
+  "source": "https://github.com/jsdyer/edge-map",
   "hosting": "project",
   "access": "browser",
   "data_info": {
-    "mode": "local",
-    "detail": "The browser reads the text you paste and compares its lines."
+    "mode": "live",
+    "detail": "Your browser asks Cloudflare's public /cdn-cgi/trace endpoints which data centre answered."
   }
 }

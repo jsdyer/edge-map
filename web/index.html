@@ -13,22 +13,46 @@
   <a class="skip" href="#main">Skip to content</a>
   <header><a href="https://coolcode.ca/">← CoolCode.ca</a><a href="{{SOURCE_URL}}">Source &amp; instructions ↗</a></header>
   <main id="main">
-    <p class="eyebrow">Browser tool starter</p>
+    <p class="eyebrow">Cloudflare trace</p>
     <h1>{{TITLE}}</h1>
     <p class="intro">{{DESCRIPTION}}</p>
-    <section aria-labelledby="example-title">
-      <h2 id="example-title">Clean a list</h2>
-      <p>Trim spaces, skip blank lines and remove exact duplicates. Capitalization stays distinct.</p>
-      <div class="panels">
-        <div><label for="input">Your lines</label><textarea id="input" rows="10" maxlength="100000" spellcheck="false" placeholder="Paste one item per line"></textarea></div>
-        <div><label for="output">Cleaned lines</label><textarea id="output" rows="10" readonly spellcheck="false"></textarea></div>
+
+    <section aria-labelledby="edge-title">
+      <h2 id="edge-title">Your edge right now</h2>
+      <p id="headline" class="headline-text" role="status" aria-live="polite">Asking Cloudflare…</p>
+      <div class="actions">
+        <button id="rerun" type="button">Check again</button>
+        <label class="inline"><input type="checkbox" id="show-ip"> Show my IP address</label>
       </div>
-      <div class="actions"><button id="sample" type="button">Load example</button><button id="clear" type="button">Clear</button><button id="copy" type="button" hidden>Copy result</button></div>
-      <p id="status" role="status" aria-live="polite">Paste a list to begin.</p>
-      <noscript><p>This tool needs JavaScript to process your text. The source is available above.</p></noscript>
+      <div class="table-wrap">
+        <table id="results">
+          <thead><tr><th scope="col">Endpoint</th><th scope="col">Data centre</th><th scope="col">Your IP</th><th scope="col">Connection</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </section>
-    <aside aria-label="Privacy"><strong>Stays on your device.</strong> The browser processes your text in this tab. Reloading clears it.</aside>
+
+    <section aria-labelledby="map-title">
+      <h2 id="map-title">Map</h2>
+      <div class="row filters">
+        <label for="view" class="visually-hidden">Map area</label>
+        <select id="view"><option value="north-america">North America</option><option value="world">World</option></select>
+      </div>
+      <div id="map" class="map" role="img" aria-label="Cloudflare data centres, with the ones serving you highlighted"></div>
+      <p class="muted">Points are the airports Cloudflare names its data centres after. Highlighted points served you in this check.</p>
+    </section>
+
+    <section aria-labelledby="history-title">
+      <h2 id="history-title">Your history</h2>
+      <label class="inline"><input type="checkbox" id="remember"> Remember my results in this browser</label>
+      <p id="history-summary" class="muted">Off. Turn it on and revisit over days to see whether your edge moves.</p>
+      <div class="table-wrap"><table id="history" hidden><thead><tr><th scope="col">Endpoint</th><th scope="col">Data centres seen</th><th scope="col">Changes</th></tr></thead><tbody></tbody></table></div>
+      <div class="actions"><a id="history-csv" class="button" hidden download="edge-map-history.csv">Download CSV</a><button id="history-clear" type="button" hidden>Clear history</button></div>
+    </section>
+
+    <aside aria-label="Privacy"><strong>What leaves your browser.</strong> Your browser asks each Cloudflare endpoint for its trace, the same small request any Cloudflare site sees. Nothing is sent to CoolCode. Your IP address is hidden unless you choose to show it. History is off by default; when on, it is stored only in this browser (<code>coolcode:edge-map:history</code>) and records data centre codes, not your IP.</aside>
+    <noscript><p>This tool needs JavaScript to ask Cloudflare.</p></noscript>
   </main>
-  <footer>Part of <a href="https://coolcode.ca/">the CoolCode collection</a>. {{ISSUE_LINK}}</footer>
+  <footer>Part of <a href="https://coolcode.ca/">the CoolCode collection</a>. Data from Cloudflare's <code>/cdn-cgi/trace</code>. {{ISSUE_LINK}}</footer>
 </body>
 </html>

@@ -1,0 +1,402 @@
+{
+ "home_country": "CA",
+ "endpoints": [
+  {
+   "id": "site",
+   "label": "This page's own domain",
+   "url": "/cdn-cgi/trace",
+   "note": "Works when coolcode.ca is proxied through Cloudflare."
+  },
+  {
+   "id": "ipv4",
+   "label": "1.1.1.1 over IPv4",
+   "url": "https://1.1.1.1/cdn-cgi/trace"
+  },
+  {
+   "id": "ipv6",
+   "label": "Cloudflare DNS over IPv6",
+   "url": "https://[2606:4700:4700::1111]/cdn-cgi/trace"
+  },
+  {
+   "id": "dual",
+   "label": "one.one.one.one (dual stack)",
+   "url": "https://one.one.one.one/cdn-cgi/trace"
+  }
+ ],
+ "timeout_seconds": 8,
+ "history_limit": 500,
+ "colos": {
+  "YVR": {
+   "city": "Vancouver",
+   "country": "CA",
+   "lat": 49.19,
+   "lon": -123.18
+  },
+  "YYC": {
+   "city": "Calgary",
+   "country": "CA",
+   "lat": 51.13,
+   "lon": -114.01
+  },
+  "YEG": {
+   "city": "Edmonton",
+   "country": "CA",
+   "lat": 53.31,
+   "lon": -113.58
+  },
+  "YXE": {
+   "city": "Saskatoon",
+   "country": "CA",
+   "lat": 52.17,
+   "lon": -106.7
+  },
+  "YWG": {
+   "city": "Winnipeg",
+   "country": "CA",
+   "lat": 49.91,
+   "lon": -97.24
+  },
+  "YYZ": {
+   "city": "Toronto",
+   "country": "CA",
+   "lat": 43.68,
+   "lon": -79.63
+  },
+  "YOW": {
+   "city": "Ottawa",
+   "country": "CA",
+   "lat": 45.32,
+   "lon": -75.67
+  },
+  "YUL": {
+   "city": "Montréal",
+   "country": "CA",
+   "lat": 45.47,
+   "lon": -73.74
+  },
+  "YQB": {
+   "city": "Québec City",
+   "country": "CA",
+   "lat": 46.79,
+   "lon": -71.39
+  },
+  "YHZ": {
+   "city": "Halifax",
+   "country": "CA",
+   "lat": 44.88,
+   "lon": -63.51
+  },
+  "SEA": {
+   "city": "Seattle",
+   "country": "US",
+   "lat": 47.45,
+   "lon": -122.31
+  },
+  "PDX": {
+   "city": "Portland",
+   "country": "US",
+   "lat": 45.59,
+   "lon": -122.6
+  },
+  "SMF": {
+   "city": "Sacramento",
+   "country": "US",
+   "lat": 38.7,
+   "lon": -121.59
+  },
+  "SFO": {
+   "city": "San Francisco",
+   "country": "US",
+   "lat": 37.62,
+   "lon": -122.38
+  },
+  "SJC": {
+   "city": "San Jose",
+   "country": "US",
+   "lat": 37.36,
+   "lon": -121.93
+  },
+  "LAX": {
+   "city": "Los Angeles",
+   "country": "US",
+   "lat": 33.94,
+   "lon": -118.41
+  },
+  "SAN": {
+   "city": "San Diego",
+   "country": "US",
+   "lat": 32.73,
+   "lon": -117.19
+  },
+  "LAS": {
+   "city": "Las Vegas",
+   "country": "US",
+   "lat": 36.08,
+   "lon": -115.15
+  },
+  "PHX": {
+   "city": "Phoenix",
+   "country": "US",
+   "lat": 33.43,
+   "lon": -112.01
+  },
+  "SLC": {
+   "city": "Salt Lake City",
+   "country": "US",
+   "lat": 40.79,
+   "lon": -111.98
+  },
+  "DEN": {
+   "city": "Denver",
+   "country": "US",
+   "lat": 39.86,
+   "lon": -104.67
+  },
+  "ABQ": {
+   "city": "Albuquerque",
+   "country": "US",
+   "lat": 35.04,
+   "lon": -106.61
+  },
+  "DFW": {
+   "city": "Dallas",
+   "country": "US",
+   "lat": 32.9,
+   "lon": -97.04
+  },
+  "AUS": {
+   "city": "Austin",
+   "country": "US",
+   "lat": 30.19,
+   "lon": -97.67
+  },
+  "IAH": {
+   "city": "Houston",
+   "country": "US",
+   "lat": 29.98,
+   "lon": -95.34
+  },
+  "MCI": {
+   "city": "Kansas City",
+   "country": "US",
+   "lat": 39.3,
+   "lon": -94.71
+  },
+  "OMA": {
+   "city": "Omaha",
+   "country": "US",
+   "lat": 41.3,
+   "lon": -95.89
+  },
+  "MSP": {
+   "city": "Minneapolis",
+   "country": "US",
+   "lat": 44.88,
+   "lon": -93.22
+  },
+  "STL": {
+   "city": "St. Louis",
+   "country": "US",
+   "lat": 38.75,
+   "lon": -90.37
+  },
+  "ORD": {
+   "city": "Chicago",
+   "country": "US",
+   "lat": 41.98,
+   "lon": -87.9
+  },
+  "IND": {
+   "city": "Indianapolis",
+   "country": "US",
+   "lat": 39.72,
+   "lon": -86.29
+  },
+  "DTW": {
+   "city": "Detroit",
+   "country": "US",
+   "lat": 42.21,
+   "lon": -83.35
+  },
+  "CMH": {
+   "city": "Columbus",
+   "country": "US",
+   "lat": 39.99,
+   "lon": -82.89
+  },
+  "PIT": {
+   "city": "Pittsburgh",
+   "country": "US",
+   "lat": 40.49,
+   "lon": -80.23
+  },
+  "BNA": {
+   "city": "Nashville",
+   "country": "US",
+   "lat": 36.12,
+   "lon": -86.68
+  },
+  "MEM": {
+   "city": "Memphis",
+   "country": "US",
+   "lat": 35.04,
+   "lon": -89.98
+  },
+  "ATL": {
+   "city": "Atlanta",
+   "country": "US",
+   "lat": 33.64,
+   "lon": -84.43
+  },
+  "CLT": {
+   "city": "Charlotte",
+   "country": "US",
+   "lat": 35.21,
+   "lon": -80.94
+  },
+  "MCO": {
+   "city": "Orlando",
+   "country": "US",
+   "lat": 28.43,
+   "lon": -81.31
+  },
+  "TPA": {
+   "city": "Tampa",
+   "country": "US",
+   "lat": 27.98,
+   "lon": -82.53
+  },
+  "MIA": {
+   "city": "Miami",
+   "country": "US",
+   "lat": 25.79,
+   "lon": -80.29
+  },
+  "RIC": {
+   "city": "Richmond",
+   "country": "US",
+   "lat": 37.51,
+   "lon": -77.32
+  },
+  "IAD": {
+   "city": "Ashburn",
+   "country": "US",
+   "lat": 38.95,
+   "lon": -77.46
+  },
+  "PHL": {
+   "city": "Philadelphia",
+   "country": "US",
+   "lat": 39.87,
+   "lon": -75.24
+  },
+  "EWR": {
+   "city": "Newark",
+   "country": "US",
+   "lat": 40.69,
+   "lon": -74.17
+  },
+  "BOS": {
+   "city": "Boston",
+   "country": "US",
+   "lat": 42.36,
+   "lon": -71.01
+  },
+  "HNL": {
+   "city": "Honolulu",
+   "country": "US",
+   "lat": 21.32,
+   "lon": -157.92
+  },
+  "ANC": {
+   "city": "Anchorage",
+   "country": "US",
+   "lat": 61.17,
+   "lon": -149.99
+  },
+  "MEX": {
+   "city": "Mexico City",
+   "country": "MX",
+   "lat": 19.44,
+   "lon": -99.07
+  },
+  "QRO": {
+   "city": "Querétaro",
+   "country": "MX",
+   "lat": 20.62,
+   "lon": -100.19
+  },
+  "LHR": {
+   "city": "London",
+   "country": "GB",
+   "lat": 51.47,
+   "lon": -0.45
+  },
+  "DUB": {
+   "city": "Dublin",
+   "country": "IE",
+   "lat": 53.42,
+   "lon": -6.27
+  },
+  "AMS": {
+   "city": "Amsterdam",
+   "country": "NL",
+   "lat": 52.31,
+   "lon": 4.76
+  },
+  "CDG": {
+   "city": "Paris",
+   "country": "FR",
+   "lat": 49.01,
+   "lon": 2.55
+  },
+  "FRA": {
+   "city": "Frankfurt",
+   "country": "DE",
+   "lat": 50.04,
+   "lon": 8.56
+  },
+  "MAD": {
+   "city": "Madrid",
+   "country": "ES",
+   "lat": 40.49,
+   "lon": -3.57
+  },
+  "ARN": {
+   "city": "Stockholm",
+   "country": "SE",
+   "lat": 59.65,
+   "lon": 17.92
+  },
+  "NRT": {
+   "city": "Tokyo",
+   "country": "JP",
+   "lat": 35.77,
+   "lon": 140.39
+  },
+  "HKG": {
+   "city": "Hong Kong",
+   "country": "HK",
+   "lat": 22.31,
+   "lon": 113.91
+  },
+  "SIN": {
+   "city": "Singapore",
+   "country": "SG",
+   "lat": 1.36,
+   "lon": 103.99
+  },
+  "SYD": {
+   "city": "Sydney",
+   "country": "AU",
+   "lat": -33.94,
+   "lon": 151.18
+  },
+  "GRU": {
+   "city": "São Paulo",
+   "country": "BR",
+   "lat": -23.43,
+   "lon": -46.47
+  }
+ }
+}
