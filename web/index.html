@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="{{DESCRIPTION}}">
-  <title>{{TITLE}} · CoolCode</title>
+  <title>Cloudflare Data Centre Map &amp; History · CoolCode</title>
+  <link rel="canonical" href="https://coolcode.ca/edge-map/">
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.mjs"></script>
   {{VISIT_COUNTER}}
@@ -50,6 +51,7 @@
       <div class="actions"><a id="history-csv" class="button" hidden download="edge-map-history.csv">Download CSV</a><button id="history-clear" type="button" hidden>Clear history</button></div>
     </section>
 
+    <p><a href="https://coolcode.ca/colocheck/">Compare response times over IPv4 and IPv6 and save labelled network runs</a>.</p>
     <aside aria-label="Privacy"><strong>What leaves your browser.</strong> Your browser asks each Cloudflare endpoint for its trace, the same small request any Cloudflare site sees. The shared CoolCode counter records aggregate tool visits; your trace and history are not uploaded to it. Your IP address is hidden unless you choose to show it. History is off by default; when on, it is stored only in this browser (<code>coolcode:edge-map:history</code>) and records data centre codes, not your IP.</aside>
     <noscript><p>This tool needs JavaScript to ask Cloudflare.</p></noscript>
   </main>

@@ -10,6 +10,8 @@ browser. Published at `coolcode.ca/edge-map/`.
 The page asks several Cloudflare endpoints for their /cdn-cgi/trace and shows which data centre (an airport code such as YVR or SEA) answered each one, over IPv4 and IPv6. If Cloudflare locates your IP in Canada but an edge outside Canada answered, it is flagged. Turn on "Remember my results in this browser" and come back over days to see whether your ISP's route to Cloudflare moves; the history stores data centre codes only, never your IP, and can be downloaded as CSV.
 <!-- /coolcode:guide -->
 
+[Compare response times over IPv4 and IPv6 and save labelled network runs](https://coolcode.ca/colocheck/).
+
 Each endpoint can fail on its own: the IPv6 one fails on networks without IPv6,
 and **This page's own domain** only answers when coolcode.ca is proxied through
 Cloudflare (on plain GitHub Pages it shows "not served through Cloudflare").
